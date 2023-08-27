@@ -1,9 +1,10 @@
 // Write your code here
 import {Component} from 'react'
+import DenominationItemComponent from '../DenominationItem/index'
 import './index.css'
 
 class CashWithdrawal extends Component {
-  state = {amount: 2000}
+  state = {denominationsList: this.props, amount: 2000}
 
   onClick50Button = () => {
     this.setState(prevState => ({amount: prevState.amount - 50}))
@@ -22,7 +23,8 @@ class CashWithdrawal extends Component {
   }
 
   render() {
-    const {amount} = this.state
+    const {denominationsList, amount} = this.state
+    console.log(' in render method', denominationsList.denominationsList)
     return (
       <div className="bg_container">
         <div className="inner-container">
@@ -39,42 +41,20 @@ class CashWithdrawal extends Component {
               <p className="In-rupees">In Rupees</p>
             </div>
           </div>
+
           <p className="initial-balance">Withdraw</p>
           <p className="In-rupees">CHOOSE SUM (IN RUPEES)</p>
           <ul className="buttons-container">
-            <div>
-              <button
-                type="button"
-                className="button"
-                onClick={this.onClick50Button}
-              >
-                50
-              </button>
-              <button
-                type="button"
-                className="button"
-                onClick={this.onClick100Button}
-              >
-                100
-              </button>
-            </div>
-            <div>
-              <button
-                type="button"
-                className="button"
-                onClick={this.onClick200Button}
-              >
-                {' '}
-                200
-              </button>
-              <button
-                type="button"
-                className="button"
-                onClick={this.onClick500Button}
-              >
-                500
-              </button>
-            </div>
+            {denominationsList.denominationsList.map(eachItem => (
+              <DenominationItemComponent
+                each={eachItem}
+                key={eachItem.id}
+                onClick50Button={this.onClick50Button}
+                onClick100Button={this.onClick100Button}
+                onClick200Button={this.onClick200Button}
+                onClick500Button={this.onClick500Button}
+              />
+            ))}
           </ul>
         </div>
       </div>

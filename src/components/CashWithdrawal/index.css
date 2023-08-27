@@ -57,14 +57,3 @@
   align-items: center;
   flex-wrap: wrap;
 }
-.button {
-  background-color: #585076;
-  color: white;
-  border: 1px solid white;
-  width: 80px;
-  height: 30px;
-  cursor: pointer;
-  outline: none;
-  border-radius: 5px;
-  margin: 10px;
-}
